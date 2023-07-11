@@ -1,56 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boggle Game</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-   <h1>Let's Play Boggle!</h1>
-<section id="boggle-game">
-   <table class="board">
-        <tbody> 
-            {% for row in board %}
-            <tr> 
-                {% for cell in row %} 
-                <td> {{ cell }} </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-   </tbody>
-   </table>
+{% extends 'base.html' %}
+<!-- Display the board using a Jinja Template -->
+<!-- Use the boggle.py file to generate a board and send to the jinja template -->
+{% block content %}
 
-   <p>High Score:
-    <b> {{ highscore }} </b>
-    in {{ nplays }} plays
-   </p>
+<div class="container">
+    <p class="lead">Instructions:</p>
+    <p class="lead">Try to score the highest points total. To gain points, create words from the letters in the grid.</p>
+    <p class="lead">You can use adjacent letters as well as diagonals. The letters must connect to each other in the proper sequence to spell the word correctly (excluding any letters previously used to construct the word).</p>
 
-   <p>
-    Score: <b class="score">0</b> <br>
-    Seconds Left: <b class="timer"></b>
-   </p>
 
-   <form method="POST" class="add-word">
-        <input name="word" class="word" placeholder="guess a word" autofocus>
-        <button>Enter</button>
-    </form>
+<form action="/board" method="GET">
+    <button type="submit" class="btn btn-primary">Play!</button>
+</form>
+</div>
 
-    <p class="msg">
-        <!-- Display feedback messages here -->
-    </p>
-
-    <ul class="words">
-        <!-- Display list of found words here -->
-    </ul>
-
-</section>
-<script src="http://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
-<script src="/static/script.js"></script>
-<script>
-    let game = new BoggleGame("boggle", 60)
-</script>
-</body>
-</html>
+{% endblock %}

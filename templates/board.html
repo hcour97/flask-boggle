@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<!-- Display the board using a Jinja Template -->
+<!-- Use the boggle.py file to generate a board and send to the jinja template -->
+
+{% block content %}
+<div class="container"></div>
+ <div class="container">
+    <table id="board" class="gride-container">
+         <tbody> 
+             {% for row in board %}
+             <tr> 
+                 {% for cell in row %} 
+                 <td> {{ cell }} </td>
+                 {% endfor %}
+             </tr>
+             {% endfor %}
+    </tbody>
+    </table>
+    </div>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>Current Score:</p> <p id="score">0</p>
+            </div>
+            <div class="col">
+                <p>Highscore:</p> <p id="highscore">{{ highscore }}</p>
+            </div>     
+            <div class="col">
+                <p>Number of games</p> <p id="nplays"> {{ nplays }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="" id="messages">
+        <p>Good Luck</p>
+    </div>
+
+    <form method="POST" id="word-submit-form" class="form-inline">
+        <div class="form-group mb-2">
+        <input type="input" class="" id="word" placeholder="guess a word" name="word" required>
+        </div>
+        <button type="submit" id="word-button" class="btn btn-primary mb2">Enter</button>
+    </form>
+ 
+    <span id="countdown">60</span><span>seconds remaining</span>
+ 
+     <ul class="words list-group">
+         <!-- Display list of found words here -->
+     </ul>
+ 
+    </div>
+
+    {% endblock %}
